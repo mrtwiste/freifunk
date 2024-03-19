@@ -1,0 +1,2 @@
+# freifunk
+Scripte für Freifunk
