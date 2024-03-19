@@ -35,7 +35,7 @@ echo "SOLL: PARTNAME=kernel1 IST: " $partname_mmcblk0p7
 echo "SOLL: PARTNAME=bs      IST: " $partname_mmcblk0p8
 
 # Frage: Sind die oberen Partitionen korrekt ausgegeben worden?
-read -p "Sind die oberen Partitionen korrekt ausgegeben worden SOL=IST? (Ja/Nein): " answer
+read -p "Sind die oberen Partitionen korrekt ausgegeben worden SOLL=IST? (Ja/Nein): " answer
 if [[ "$answer" != "Ja" ]]; then
     echo "Abbruch."
     exit 1
