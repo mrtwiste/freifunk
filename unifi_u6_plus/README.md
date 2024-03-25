@@ -6,7 +6,7 @@
 Bash, SSH, SSH Key, ssh-copy-id
 
 ### Windows:
-***TO DO***
+***Freiwilliger gesucht der daraus ein Powershell Script oder was anderes macht***
 
 ### Parameter:
 IP Adresse, Firmwarefile
