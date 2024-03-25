@@ -12,7 +12,7 @@ Bash, SSH, SSH Key, ssh-copy-id
 IP Adresse, Firmwarefile
 
 ### How To:
-Ohne DHCP hat der AP die IP Addresse 192.169.1.20/24, Netzwerk des Rechners demenstprechend konfigurieren.
+Ohne DHCP hat der AP die IP Addresse 192.168.1.20/24, Netzwerk des Rechners demenstprechend konfigurieren.
 Alternativ den AP ins Netzwerk hängen und die dort zugewiesene IP nutzen.
 
 Aufruf mit *fwupdate.sh IP IMAGE*  Bsp: fwupdate.sh 192.168.1.20 meintollesu6plusimage.bin
