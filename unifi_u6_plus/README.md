@@ -11,7 +11,7 @@ Bash, SSH, SSH Key, ssh-copy-id
 ### Parameter:
 IP Adresse, Firmwarefile
 
-### How To:
+## How To:
 Ohne DHCP hat der AP die IP Addresse 192.168.1.20/24, Netzwerk des Rechners demenstprechend konfigurieren.
 Alternativ den AP ins Netzwerk hängen und die dort zugewiesene IP nutzen.
 
