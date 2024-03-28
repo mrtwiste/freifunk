@@ -46,8 +46,8 @@ ssh "ubnt@$ip_address" 'fw_setenv boot_openwrt "fdt addr \$(fdtcontroladdr); fdt
 ssh "ubnt@$ip_address" 'fw_setenv bootcmd_real "run boot_openwrt"'
 ssh "ubnt@$ip_address" 'fw_printenv'
 
-# Kopiere die Fimrwaredatei nach /tmp/openwrt.bin
-scp "$firmware_file" "ubnt@$ip_address:/tmp/openwrt.bin"
+# Kopiere die Fimrwaredatei nach /tmp/openwrt.bin (-O da ältere Firmwareversion kein sftp beherscht)
+scp -O "$firmware_file" "ubnt@$ip_address:/tmp/openwrt.bin"
 
 # Entpacke und schreibe den Kernel auf mmcblk0p6
 ssh "ubnt@$ip_address" 'tar xf /tmp/openwrt.bin sysupgrade-ubnt_unifi-6-plus/kernel -O | dd of=/dev/mmcblk0p6'
