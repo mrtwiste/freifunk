@@ -1,4 +1,4 @@
-# Installiert die Freifunksoftware auf einem UNFI U6+ AP.
+# Installiert die Freifunksoftware auf einem UNIFI U6+ AP.
 
 ## Vorraussetzungen:
 
