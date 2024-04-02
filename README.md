@@ -1,2 +1,2 @@
 # Freifunk
-Scripte und Anleltungen für Freifunk
+Scripte und Anleitungen für Freifunk
