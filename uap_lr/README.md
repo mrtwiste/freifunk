@@ -10,10 +10,14 @@ Details zu den Ansätzen in den beiden verlinkten Forenthreads
 Leider ist die Version 2 nicht als Zusatz auf dem Produktlabel.
 Man kann es wie folgt erkennen:
 per SSH auf dem Router anmelden: 
-`mca-dump | grep "model"
+
+`mca-dump | grep "model"`
+
+Da sollte in ungefähr dann dies in der Ausgabe stehen:
+
 "model": "U2Lv2",
-"model_display": "UAP-LRv2",`
+"model_display": "UAP-LRv2"
 
 Oder über den Unifi Controller, da meldet er sich als UAP-LR-v2
 
-Und evtl. auch am Produktlabel, die ich als V2 indentifiziert habe, sehen wie folgt aus:
+Und evtl. auch am Produktlabel. Router, die ich als V2 indentifiziert habe, sehen wie folgt aus: ![UAP](./UAPLRv2.png)
