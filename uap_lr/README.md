@@ -21,4 +21,5 @@ Da sollte in ungefähr dann dies in der Ausgabe stehen:
 
 Oder über den Unifi Controller, da meldet er sich als UAP-LR-v2
 
-Und evtl. auch am Produktlabel. Router, die ich als V2 indentifiziert habe, sehen wie folgt aus: ![UAP](./UAPLRv2.png)
+Und evtl. auch am Produktlabel. Dort ist der Typ mit M/N: UAP-LR angegeben.
+Router, die ich als V2 indentifiziert habe, sehen wie folgt aus: ![UAP](./UAPLRv2.png)
