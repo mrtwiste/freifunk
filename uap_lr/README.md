@@ -8,8 +8,9 @@ Details zu den Ansätzen in den beiden verlinkten Forenthreads
 
 ### Wie erkenne ich einen V2 Router? 
 Leider ist die Version 2 nicht als Zusatz auf dem Produktlabel.
-Man kann es wie folgt erkennen:
-per SSH auf dem Router anmelden: 
+Man kann es wie folgt erkennen auf dem zurück gesetzten Router:
+
+per SSH als User ubnt mit PWD ubnt auf dem Router anmelden: 
 
 `mca-dump | grep "model"`
 
