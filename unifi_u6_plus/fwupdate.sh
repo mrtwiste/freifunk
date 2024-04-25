@@ -17,7 +17,7 @@ firmware_file="$2"
 
 #Alias für ssh definieren
 alias myssh='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ForwardX11=no'
-alias my-ssh-copy-id='ssh-copy-id ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "ubnt@$ip_address" '
+alias my-ssh-copy-id='ssh-copy-id ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" '
 alias myscp='scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 
 # SSH Schlüssel kopieren um sich das eingeben des Passworts zu sparen
