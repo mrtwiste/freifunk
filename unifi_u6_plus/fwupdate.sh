@@ -18,7 +18,7 @@ firmware_file="$2"
 #Alias für ssh definieren
 alias myssh='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ForwardX11=no'
 alias my-ssh-copy-id='ssh-copy-id ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" '
-alias myscp='scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+alias myscp='scp -O -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 
 # SSH Schlüssel kopieren um sich das eingeben des Passworts zu sparen
 my-ssh-copy-id "ubnt@$ip_address"
@@ -52,7 +52,7 @@ myssh "ubnt@$ip_address" 'fw_setenv bootcmd_real "run boot_openwrt"'
 myssh "ubnt@$ip_address" 'fw_printenv'
 
 # Kopiere die Fimrwaredatei nach /tmp/openwrt.bin (-O da ältere Firmwareversion kein sftp beherscht)
-myscp -O "$firmware_file" "ubnt@$ip_address:/tmp/openwrt.bin"
+myscp "$firmware_file" "ubnt@$ip_address:/tmp/openwrt.bin"
 
 # Entpacke und schreibe den Kernel auf mmcblk0p6
 myssh "ubnt@$ip_address" 'tar xf /tmp/openwrt.bin sysupgrade-ubnt_unifi-6-plus/kernel -O | dd of=/dev/mmcblk0p6'
