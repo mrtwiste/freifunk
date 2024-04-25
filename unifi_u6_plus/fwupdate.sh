@@ -15,11 +15,16 @@ fi
 ip_address="$1"
 firmware_file="$2"
 
+#Alias für ssh definieren
+alias myssh='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ForwardX11=no'
+alias my-ssh-copy-id='ssh-copy-id ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "ubnt@$ip_address" '
+alias myscp='scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+
 # SSH Schlüssel kopieren um sich das eingeben des Passworts zu sparen
-ssh-copy-id "ubnt@$ip_address"
+my-ssh-copy-id "ubnt@$ip_address"
 
 # Aufheben Schreibschutz Kernel Partitionen /proc/ubnthal/.uf
-ssh "ubnt@$ip_address" 'echo 5edfacbf > /proc/ubnthal/.uf'
+myssh "ubnt@$ip_address" 'echo 5edfacbf > /proc/ubnthal/.uf'
 
 # Greife auf die PARTNAME-Information von mmcblk0p6 zu
 partname_mmcblk0p6=$(ssh "ubnt@$ip_address" 'grep PARTNAME /sys/block/mmcblk0/mmcblk0p6/uevent')
@@ -42,26 +47,26 @@ if [[ "$answer" != "Ja" ]]; then
 fi
 
 # Setze Umgebungsvariablen für das Booten von OpenWrt
-ssh "ubnt@$ip_address" 'fw_setenv boot_openwrt "fdt addr \$(fdtcontroladdr); fdt rm /signature; bootubnt"'
-ssh "ubnt@$ip_address" 'fw_setenv bootcmd_real "run boot_openwrt"'
-ssh "ubnt@$ip_address" 'fw_printenv'
+myssh "ubnt@$ip_address" 'fw_setenv boot_openwrt "fdt addr \$(fdtcontroladdr); fdt rm /signature; bootubnt"'
+myssh "ubnt@$ip_address" 'fw_setenv bootcmd_real "run boot_openwrt"'
+myssh "ubnt@$ip_address" 'fw_printenv'
 
 # Kopiere die Fimrwaredatei nach /tmp/openwrt.bin (-O da ältere Firmwareversion kein sftp beherscht)
-scp -O "$firmware_file" "ubnt@$ip_address:/tmp/openwrt.bin"
+myscp -O "$firmware_file" "ubnt@$ip_address:/tmp/openwrt.bin"
 
 # Entpacke und schreibe den Kernel auf mmcblk0p6
-ssh "ubnt@$ip_address" 'tar xf /tmp/openwrt.bin sysupgrade-ubnt_unifi-6-plus/kernel -O | dd of=/dev/mmcblk0p6'
+myssh "ubnt@$ip_address" 'tar xf /tmp/openwrt.bin sysupgrade-ubnt_unifi-6-plus/kernel -O | dd of=/dev/mmcblk0p6'
 
 # Entpacke und schreibe das Root-Dateisystem auf mmcblk0p7
-ssh "ubnt@$ip_address" 'tar xf /tmp/openwrt.bin sysupgrade-ubnt_unifi-6-plus/root -O | dd of=/dev/mmcblk0p7'
+myssh "ubnt@$ip_address" 'tar xf /tmp/openwrt.bin sysupgrade-ubnt_unifi-6-plus/root -O | dd of=/dev/mmcblk0p7'
 
 # Setze den Wert auf mmcblk0p8
-ssh "ubnt@$ip_address" 'echo -ne "\x00\x00\x00\x00\x2b\xe8\x4d\xa3" > /dev/mmcblk0p8'
+myssh "ubnt@$ip_address" 'echo -ne "\x00\x00\x00\x00\x2b\xe8\x4d\xa3" > /dev/mmcblk0p8'
 
 # Frage: Soll der Host neu gestartet werden?
 read -p "Möchten Sie den Host neu starten? (Ja/Nein): " restart_answer
 if [[ "$restart_answer" == "Ja" ]]; then
-    ssh "ubnt@$ip_address" 'reboot'
+    myssh "ubnt@$ip_address" 'reboot'
 else
     echo "Abbruch."
     exit 1
