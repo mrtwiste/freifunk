@@ -15,25 +15,34 @@ fi
 ip_address="$1"
 firmware_file="$2"
 
-#Alias für ssh definieren
-alias myssh='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ForwardX11=no'
-alias my-ssh-copy-id='ssh-copy-id ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" '
-alias myscp='scp -O -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+#commands für ssh definieren
+myssh() {
+    ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ForwardX11=no -o LogLevel=ERROR "$@"
+}
+
+my-ssh-copy-id() {
+    ssh-copy-id -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR "$@"
+}
+
+myscp() {
+    scp -O -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR "$@"
+}
+
 
 # SSH Schlüssel kopieren um sich das eingeben des Passworts zu sparen
-my-ssh-copy-id "ubnt@$ip_address"
+my-ssh-copy-id ubnt@$ip_address
 
 # Aufheben Schreibschutz Kernel Partitionen /proc/ubnthal/.uf
-myssh "ubnt@$ip_address" 'echo 5edfacbf > /proc/ubnthal/.uf'
+myssh ubnt@$ip_address 'echo 5edfacbf > /proc/ubnthal/.uf'
 
 # Greife auf die PARTNAME-Information von mmcblk0p6 zu
-partname_mmcblk0p6=$(ssh "ubnt@$ip_address" 'grep PARTNAME /sys/block/mmcblk0/mmcblk0p6/uevent')
+partname_mmcblk0p6=$(myssh "ubnt@$ip_address" 'grep PARTNAME /sys/block/mmcblk0/mmcblk0p6/uevent')
 
 # Greife auf die PARTNAME-Information von mmcblk0p7 zu
-partname_mmcblk0p7=$(ssh "ubnt@$ip_address" 'grep PARTNAME /sys/block/mmcblk0/mmcblk0p7/uevent')
+partname_mmcblk0p7=$(myssh "ubnt@$ip_address" 'grep PARTNAME /sys/block/mmcblk0/mmcblk0p7/uevent')
 
 # Greife auf die PARTNAME-Information von mmcblk0p8 zu
-partname_mmcblk0p8=$(ssh "ubnt@$ip_address" 'grep PARTNAME /sys/block/mmcblk0/mmcblk0p8/uevent')
+partname_mmcblk0p8=$(myssh "ubnt@$ip_address" 'grep PARTNAME /sys/block/mmcblk0/mmcblk0p8/uevent')
 
 echo "SOLL: PARTNAME=kernel0 IST: " $partname_mmcblk0p6
 echo "SOLL: PARTNAME=kernel1 IST: " $partname_mmcblk0p7
