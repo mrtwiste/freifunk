@@ -2,7 +2,7 @@
 
 # Script zum Flashen eines U6+ mit Freifunk Firmware
 # Freifunk Nordhessen Frank Fischer
-# Version 0.1 vom 19.03.2024
+# Version 0.2 vom 29.04.2024
 # Original Doku unter https://git.openwrt.org/?p=openwrt/openwrt.git;a=commit;h=75ee5546e9b7cfa5bbfd6f844ab8c5fffd5bb594
 
 # Überprüfe, ob die erforderlichen Parameter übergeben wurden
