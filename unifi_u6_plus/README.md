@@ -4,6 +4,7 @@
 
 ### Linux:
 Bash, SSH, SSH Key, ssh-copy-id
+
 Wenn der SSH Key mit einer Passphrase abgesichert ist, empfiehlt sich der Einsatz des ssh-agents, außer man Tippt gerne...
 HowTo: https://www.cyberciti.biz/faq/how-to-use-ssh-agent-for-authentication-on-linux-unix/
 
