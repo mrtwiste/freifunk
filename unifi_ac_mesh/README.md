@@ -1,4 +1,4 @@
-# Installiert die Freifunksoftware auf einem UNIFI U6+ AP.
+# Installiert die Freifunksoftware auf einem UNIFI AC Mesh und Co.
 
 ## Sollte bei allen APs der AC Serie funtionieren, siehe https://openwrt.org/toh/ubiquiti/unifiac
 
