@@ -24,6 +24,8 @@ Passwort für die Passwortanfrage: *ubnt*
 Bitte in der nächsten Abfrage prüfen ob die Partitionnen wie erwartet vorhanden sind.
 Dies ist zur Sicherheit da wir nicht wissen ob UNIFI hier nochmal was ändert!
 
+Die DDs dauern auf der alten Hardware eine Weile, also ruhig bleiben!
+
 Wenn alles erfolgreich war kann man die letzte Frage mit JA beantworten udn der AP startet die Freifunksoftware.
 
 Jetzt wie in der **DOKU** deiner Community beschrieben den AP konfigurieren.
