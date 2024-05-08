@@ -17,7 +17,7 @@ IP Adresse, Firmwarefile
 Ohne DHCP hat der AP die IP Addresse 192.168.1.20/24, Netzwerk des Rechners demenstprechend konfigurieren.
 Alternativ den AP ins Netzwerk hängen und die dort zugewiesene IP nutzen.
 
-Aufruf mit *fwupdate_ac_mesh.sh IP IMAGE*  Bsp: fwupdate.sh 192.168.1.20 meintollesACmage.bin
+Aufruf mit *fwupdate_ac_mesh.sh IP IMAGE*  Bsp: fwupdate_ac_mesh.sh 192.168.1.20 meintollesACmage.bin
 
 Passwort für die Passwortanfrage: *ubnt*
 
