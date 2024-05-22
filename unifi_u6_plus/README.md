@@ -14,7 +14,7 @@ HowTo: https://www.cyberciti.biz/faq/how-to-use-ssh-agent-for-authentication-on-
 ### Parameter:
 IP Adresse, Firmwarefile
 
-### [Firmware 1.4 Freifunk Nordhessen](https://firmware-archiv.freifunk-nordhessen.de/1.4.0/images/sysupgrade/gluon-ff_nh-1.4.0-TYM-ubiquiti-unifi-6-plus-sysupgrade.bin)
+### Firmware [1.4 Freifunk Nordhessen](https://firmware-archiv.freifunk-nordhessen.de/1.4.0/images/sysupgrade/gluon-ff_nh-1.4.0-TYM-ubiquiti-unifi-6-plus-sysupgrade.bin)
 
 ## How To:
 Ohne DHCP hat der AP die IP Addresse 192.168.1.20/24, Netzwerk des Rechners demenstprechend konfigurieren.
