@@ -4,15 +4,15 @@
 
 ### Wenn nicht experimental, dann diese Schritte:
 
-uci set autoupdater.settings.branch='experimental'
-uci commit autoupdater
+`uci set autoupdater.settings.branch='experimental'`
+`uci commit autoupdater`
 
 ###Wenn auf experimental gesetzt, dann Update 
 
-autoupdater 
+`autoupdater` 
 
 ### Am Ende wieder zurück von experimental auf stable, oder bleiben, wie man möchte....
 
-uci set autoupdater.settings.branch='stable'
-uci commit autoupdater
+`uci set autoupdater.settings.branch='stable'`
+`uci commit autoupdater`
 
