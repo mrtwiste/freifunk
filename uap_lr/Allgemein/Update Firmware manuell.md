@@ -1,6 +1,6 @@
 ## Manueles Update der Firmware von stable auf experimental
 
-´uci show autoupdater.settings.branch´    --> Zeigt aktuelle Einstallung an!
+`uci show autoupdater.settings.branch`    --> Zeigt aktuelle Einstallung an!
 
 ### Wenn nicht experimental, dann diese Schritte:
 
