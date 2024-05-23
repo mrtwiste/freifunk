@@ -7,4 +7,6 @@ Scripte und Anleitungen für Freifunk
 
 [UNIFI AC xyz](https://github.com/mrtwiste/freifunk/tree/main/unifi_ac_mesh)
 
+[Zyxel NWA55AXE](https://github.com/mrtwiste/freifunk/tree/main/Zyxel%20NWA55AXE)
+
 [Allgemeine Tips und Tricks](https://github.com/mrtwiste/freifunk/tree/main/Allgemein)
