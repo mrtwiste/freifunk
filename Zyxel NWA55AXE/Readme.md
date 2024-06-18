@@ -16,3 +16,6 @@ Während des Uploads versucht die GUI immer wieder den AP zu erreichen. Da aber 
 Daher ist es am sinnvollsten, ihr versucht den AP selber anzupingen über die 192.168.1.1.
 
 Sobald ihr diese erreicht, ist das Flashen abgeschlossen und ihr könnten den Gluon-AP entsprechend mit der grafischen Oberfläche auf Eure Bedürfnisse anpassen.
+
+Tips wenn was schief geht:
+https://wiki.freifunk-stuttgart.net/anleitungen:zyxel_nwa55axe
