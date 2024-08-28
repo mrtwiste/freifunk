@@ -1,5 +1,7 @@
 ## Zyxel NWA55AXE für Freifunk flashen
 
+# Aktuell läuft der noch nicht stabil, bricht bei größerer Userzahl zusammen! 
+
 Zugriff auf den AP mit Brwoser auf die Standard-IP https://192.168.1.2
 
 -Standalone Mode starten
