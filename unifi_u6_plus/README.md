@@ -30,3 +30,31 @@ Dies ist zur Sicherheit da wir nicht wissen ob UNIFI hier nochmal was ändert!
 Wenn alles erfolgreich war kann man die letzte Frage mit JA beantworten udn der AP startet die Freifunksoftware.
 
 Jetzt wie in der **DOKU** deiner Community beschrieben den AP konfigurieren.
+
+## Achtung: Aktueller Software-Bug (Stand: 06.09.2024) 
+
+### Auswirkungen
+
+Dieser Bug führt zu einer extrem langsamen Performance, insbesondere bei Downloads.
+
+### Workaround
+
+Um das Problem zu umgehen, setze beide WLAN-Radios in den HT20-Modus. Dadurch sollten Downloads mit bis zu 100 Mbit/s möglich sein.
+
+#### Vorgehen:
+
+1. **Überprüfe die aktuellen Einstellungen:**
+   * Verwende den Befehl `uci show wireless | grep wireless.radio`, um die aktuellen Einstellungen Deiner WLAN-Radios anzuzeigen.
+
+2. **Stelle die Radios auf HT20 um:**
+   * Führe die folgenden Befehle aus:
+
+     ```
+     uci set wireless.radio0.htmode='HT20'
+     uci set wireless.radio1.htmode='HT20'
+     uci commit
+     wifi
+     ```
+
+3. **Starte das System neu:**
+   * Führe einen Neustart durch, um die Änderungen zu übernehmen.
