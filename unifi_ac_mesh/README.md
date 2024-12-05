@@ -10,6 +10,34 @@ Bash, SSH, SSH Key, ssh-copy-id
 Wenn der SSH Key mit einer Passphrase abgesichert ist, empfiehlt sich der Einsatz des ssh-agents, außer man Tippt gerne...
 HowTo: https://www.cyberciti.biz/faq/how-to-use-ssh-agent-for-authentication-on-linux-unix/
 
+## ssh-copy-id auf OpenWrt/UniFi: Problem und Lösung
+
+`ssh-copy-id` kopiert SSH-Schlüssel standardmäßig nach `~/.ssh/authorized_keys`. 
+Auf OpenWrt/UniFi-Systemen werden diese jedoch oft in `/etc/dropbear/authorized_keys` benötigt.
+
+**Problem:**
+
+`ssh-copy-id` erkennt zwar OpenWrt, prüft aber (versionsabhängig) auch, ob der Benutzer "root" ist. 
+Auf UniFi-Geräten ist der Standardbenutzer jedoch "ubnt" (mit UID 0), was zu Problemen führt.
+
+**Lösung:**
+
+`ssh-copy-id` muss zusätzlich zur Benutzernamenprüfung auch die UID prüfen. 
+Ergänze dazu folgende Bedingung in der entsprechenden Zeile in `ssh-copy-id`:
+
+`bash
+[ -f /etc/openwrt_release ] && ([ "\$LOGNAME" = "root" ] || [ "\$(id -u)" = "0" ]) &&`
+
+***Alternativen:***
+
+Eigene Version von ssh-copy-id mit angepasster Prüfung erstellen und im Script auf diese verweisen.
+Schlüssel manuell kopieren: scp id_rsa.pub ubnt@<gerät>:/etc/dropbear/authorized_keys
+
+****Hinweise:****
+
+Backup: Vor Modifikation von ssh-copy-id ein Backup erstellen.
+Distribution: Die Funktionsweise von ssh-copy-id kann variieren.
+
 ### Parameter:
 IP Adresse, Firmwarefile
 
