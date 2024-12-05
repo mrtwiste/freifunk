@@ -31,11 +31,13 @@ Ergänze dazu folgende Bedingung in der entsprechenden Zeile in `ssh-copy-id`:
 ***Alternativen:***
 
 Eigene Version von ssh-copy-id mit angepasster Prüfung erstellen und im Script auf diese verweisen.
+
 Schlüssel manuell kopieren: scp id_rsa.pub ubnt@<gerät>:/etc/dropbear/authorized_keys
 
 ****Hinweise:****
 
 Backup: Vor Modifikation von ssh-copy-id ein Backup erstellen.
+
 Distribution: Die Funktionsweise von ssh-copy-id kann variieren.
 
 ### Parameter:
