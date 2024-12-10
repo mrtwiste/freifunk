@@ -1,16 +1,16 @@
-### Anleitung zum Flashen eines UNIF AP LR V1 mit Freifunk Nordhessen Firmware!
+# Anleitung zum Flashen eines UNIF AP LR V1 mit Freifunk Nordhessen Firmware
 
-https://openwrt.org/toh/ubiquiti/unifi_ap
+<https://openwrt.org/toh/ubiquiti/unifi_ap>
 
 Leider ist v2 nicht supported, es gibt zwar einen Ansatz diesen zu flashen, aber kein Firmwareimage von OpenWrt
 Details zu den Ansätzen in den beiden verlinkten Forenthreads
 
+## Wie erkenne ich einen V2 Router?
 
-### Wie erkenne ich einen V2 Router? 
 Leider ist die Version 2 nicht als Zusatz auf dem Produktlabel.
 Man kann es aber wie folgt erkennen auf dem zurückgesetzten Router:
 
-per SSH als User ubnt mit PWD ubnt auf dem Router anmelden: 
+per SSH als User ubnt mit PWD ubnt auf dem Router anmelden:
 
 `mca-dump | grep "model"`
 

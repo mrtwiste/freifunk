@@ -1,28 +1,48 @@
-# Installiert die Freifunksoftware auf einem UNIFI AC Mesh und Co.
+# Installiert die Freifunksoftware auf einem UNIFI AC Mesh und Co
 
-## Sollte bei allen APs der AC Serie funtionieren, siehe https://openwrt.org/toh/ubiquiti/unifiac
+## Sollte bei allen APs der AC Serie funtionieren, siehe <https://openwrt.org/toh/ubiquiti/unifiac>
 
-## Vorraussetzungen:
+## Vorraussetzungen
 
-### Linux:
+### Linux
+
 Bash, SSH, SSH Key, ssh-copy-id
 
 Wenn der SSH Key mit einer Passphrase abgesichert ist, empfiehlt sich der Einsatz des ssh-agents, außer man Tippt gerne...
-HowTo: https://www.cyberciti.biz/faq/how-to-use-ssh-agent-for-authentication-on-linux-unix/
+HowTo: <https://www.cyberciti.biz/faq/how-to-use-ssh-agent-for-authentication-on-linux-unix/>
+
+### ***Wichtig***
+
+Um Probleme mit Bootloader oder SSH zu vermeiden, installiere immer zuerst die aktuellste UniFi Firmware.
+
+Firmware Download:
+<https://www.ui.com/download/releases/firmware>
+
+Update via SSH:
+Melde dich per SSH auf dem Router an:
+
+Benutzername: ubnt
+Passwort: ubnt (Standard Passwort, falls nicht geändert)
+
+Führe folgenden Befehl aus, um das Update zu installieren:
+
+`upgrade <https://meinefirmwareurl>`
+
+Ersetze <https://meinefirmwareurl> mit der tatsächlichen URL der  Firmware.
 
 ## ssh-copy-id auf OpenWrt/UniFi: Problem und Lösung
 
-`ssh-copy-id` kopiert SSH-Schlüssel standardmäßig nach `~/.ssh/authorized_keys`. 
+`ssh-copy-id` kopiert SSH-Schlüssel standardmäßig nach `~/.ssh/authorized_keys`.
 Auf OpenWrt/UniFi-Systemen werden diese jedoch oft in `/etc/dropbear/authorized_keys` benötigt.
 
 **Problem:**
 
-`ssh-copy-id` erkennt zwar OpenWrt, prüft aber (versionsabhängig) auch, ob der Benutzer "root" ist. 
+`ssh-copy-id` erkennt zwar OpenWrt, prüft aber (versionsabhängig) auch, ob der Benutzer "root" ist.
 Auf UniFi-Geräten ist der Standardbenutzer jedoch "ubnt" (mit UID 0), was zu Problemen führt.
 
 **Lösung:**
 
-`ssh-copy-id` muss zusätzlich zur Benutzernamenprüfung auch die UID prüfen. 
+`ssh-copy-id` muss zusätzlich zur Benutzernamenprüfung auch die UID prüfen.
 Ergänze dazu folgende Bedingung in der entsprechenden Zeile in `ssh-copy-id`:
 
 `bash
@@ -40,10 +60,12 @@ Backup: Vor Modifikation von ssh-copy-id ein Backup erstellen.
 
 Distribution: Die Funktionsweise von ssh-copy-id kann variieren.
 
-### Parameter:
+### Parameter
+
 IP Adresse, Firmwarefile
 
-## How To:
+## How To
+
 Ohne DHCP hat der AP die IP Addresse 192.168.1.20/24, Netzwerk des Rechners demenstprechend konfigurieren.
 Alternativ den AP ins Netzwerk hängen und die dort zugewiesene IP nutzen.
 

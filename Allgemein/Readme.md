@@ -4,4 +4,4 @@ Tips und Tricks zu Freifunk, speziell Freifunk Nordhessen
 
 [Command Line Administration (english)](https://github.com/freifunk-gluon/gluon/wiki/Commandline-administration)
 
-[Kommandozeile (deutsch](https://wiki.freifunk.net/Konsole#Auf_der_Kommandozeile) 
+[Kommandozeile (deutsch](https://wiki.freifunk.net/Konsole#Auf_der_Kommandozeile)
