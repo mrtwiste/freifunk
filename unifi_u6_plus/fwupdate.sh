@@ -15,6 +15,12 @@ fi
 ip_address="$1"
 firmware_file="$2"
 
+# Überprüfe, ob ip_address eine gültige IP-Adresse ist
+if ! [[ $ip_address =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}$ ]]; then
+    echo "Ungültige IP-Adresse: $ip_address"
+    exit 1
+fi
+
 #commands für ssh definieren
 myssh() {
     ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ForwardX11=no -o LogLevel=ERROR "$@"
