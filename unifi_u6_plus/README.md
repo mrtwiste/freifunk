@@ -16,11 +16,13 @@ Um Probleme mit Bootloader oder SSH zu vermeiden, installiere immer zuerst die a
 Firmware Download:
 <https://www.ui.com/download/releases/firmware>
 
-Update via SSH:
+Update via Console
+:
 Melde dich per SSH auf dem Router an:
 
-Benutzername: ubnt
-Passwort: ubnt (Standard Passwort, falls nicht geändert)
+Benutzername: **ubnt**
+
+Passwort: **ubnt** (Standard Passwort, falls nicht geändert)
 
 Führe folgenden Befehl aus, um das Update zu installieren:
 
@@ -43,7 +45,7 @@ Auf UniFi-Geräten ist der Standardbenutzer jedoch "ubnt" (mit UID 0), was zu Pr
 `ssh-copy-id` muss zusätzlich zur Benutzernamenprüfung auch die UID prüfen.
 Ergänze dazu folgende Bedingung in der entsprechenden Zeile in `ssh-copy-id`:
 
-`bash
+`
 [ -f /etc/openwrt_release ] && ([ "\$LOGNAME" = "root" ] || [ "\$(id -u)" = "0" ]) &&`
 
 ***Alternativen:***
@@ -57,6 +59,8 @@ Schlüssel manuell kopieren: scp id_rsa.pub ubnt@<gerät>:/etc/dropbear/authoriz
 Backup: Vor Modifikation von ssh-copy-id ein Backup erstellen.
 
 Distribution: Die Funktionsweise von ssh-copy-id kann variieren.
+
+**Das Problem wird in einer der nächsten Versionen von ssh-copy-id gefixt sein!**
 
 ### Windows
 

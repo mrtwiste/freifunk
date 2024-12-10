@@ -18,11 +18,13 @@ Um Probleme mit Bootloader oder SSH zu vermeiden, installiere immer zuerst die a
 Firmware Download:
 <https://www.ui.com/download/releases/firmware>
 
-Update via SSH:
+Update via Console:
+
 Melde dich per SSH auf dem Router an:
 
-Benutzername: ubnt
-Passwort: ubnt (Standard Passwort, falls nicht geändert)
+Benutzername: **ubnt**
+
+Passwort: **ubnt** (Standard Passwort, falls nicht geändert)
 
 Führe folgenden Befehl aus, um das Update zu installieren:
 
@@ -33,7 +35,7 @@ Ersetze <https://meinefirmwareurl> mit der tatsächlichen URL der  Firmware.
 ## ssh-copy-id auf OpenWrt/UniFi: Problem und Lösung
 
 `ssh-copy-id` kopiert SSH-Schlüssel standardmäßig nach `~/.ssh/authorized_keys`.
-Auf OpenWrt/UniFi-Systemen werden diese jedoch oft in `/etc/dropbear/authorized_keys` benötigt.
+Auf OpenWrt/UniFi-Systemen werden diese jedoch in `/etc/dropbear/authorized_keys` benötigt.
 
 **Problem:**
 
@@ -45,7 +47,7 @@ Auf UniFi-Geräten ist der Standardbenutzer jedoch "ubnt" (mit UID 0), was zu Pr
 `ssh-copy-id` muss zusätzlich zur Benutzernamenprüfung auch die UID prüfen.
 Ergänze dazu folgende Bedingung in der entsprechenden Zeile in `ssh-copy-id`:
 
-`bash
+`
 [ -f /etc/openwrt_release ] && ([ "\$LOGNAME" = "root" ] || [ "\$(id -u)" = "0" ]) &&`
 
 ***Alternativen:***
@@ -60,6 +62,8 @@ Backup: Vor Modifikation von ssh-copy-id ein Backup erstellen.
 
 Distribution: Die Funktionsweise von ssh-copy-id kann variieren.
 
+**Das Problem wird in einer der nächsten Versionen von ssh-copy-id gefixt sein!**
+
 ### Parameter
 
 IP Adresse, Firmwarefile
@@ -69,9 +73,9 @@ IP Adresse, Firmwarefile
 Ohne DHCP hat der AP die IP Addresse 192.168.1.20/24, Netzwerk des Rechners demenstprechend konfigurieren.
 Alternativ den AP ins Netzwerk hängen und die dort zugewiesene IP nutzen.
 
-Aufruf mit *fwupdate_ac_mesh.sh IP IMAGE*  Bsp: fwupdate_ac_mesh.sh 192.168.1.20 meintollesACmage.bin
+Aufruf mit `fwupdate_ac_mesh.sh IP IMAGE`  Bsp: `fwupdate_ac_mesh.sh 192.168.1.20 meintollesACmage.bin`
 
-Passwort für die Passwortanfrage: *ubnt*
+Passwort für die Passwortanfrage: **ubnt**
 
 Bitte in der nächsten Abfrage prüfen ob die Partitionnen wie erwartet vorhanden sind.
 Dies ist zur Sicherheit da wir nicht wissen ob UNIFI hier nochmal was ändert!
