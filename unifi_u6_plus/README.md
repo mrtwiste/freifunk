@@ -97,7 +97,8 @@ Das System ist danach unbrauchbar!
 
 ### Empfohlenes Vorgehen
 
-Gerät mit `firstboot` reseten und dann mit `sysupgrade` das neue Image installieren.
+Gerät mit `firstboot` reseten und dann mit `sysupgrade` das neue Image installieren. 
+Dann anmelden und nochmal `firstboot` und `reboot`, warum auch immer...
 
 Danach wie gewohnt die Konfiguration durchführen!
 Ob spätere Updates ohne Reset funktionieren können wir jetzt noch nicht sagen!
