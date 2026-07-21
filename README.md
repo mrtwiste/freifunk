@@ -1,5 +1,33 @@
-# Freifunk
-Scripte und Anleitungen für Freifunk
+# Freifunk Tools & Scripte
+
+Willkommen im Repository für Freifunk-Automatisierungs- und Verwaltungsskripte. Dieses Projekt enthält Hilfsmittel und Konfigurationsdateien zur Einrichtung, Pflege und Bereitstellung von Freifunk-Infrastruktur und -Knoten.
+
+---
+
+## 📋 Übersicht
+
+Dieses Repository bündelt Skripte für administrative Aufgaben rund um Freifunk-Netzwerke:
+
+* **Automatisierung:** Skripte zur vereinfachten Installation und Konfiguration.
+* **Firmware & Rollout:** Hilfsmittel zur Vorbereitung und Übertragung von Firmware-Images.
+* **Netzwerk & System:** Konfigurationsbeispiele und Wartungstools für Router und Infrastruktur.
+
+---
+
+## 🛠️ Voraussetzungen
+
+* Linux-basierte Umgebung (z. B. Debian / Ubuntu)
+* Grundlegende Systemwerkzeuge (`bash`, `curl`, `git`, `ssh`)
+* Zugriff auf die entsprechenden Freifunk-Knoten oder Management-Systeme
+
+---
+
+## 🚀 Erste Schritte
+
+### 1. Repository klonen
+```bash
+git clone [https://github.com/mrtwiste/freifunk.git](https://github.com/mrtwiste/freifunk.git)
+cd freifunk
 
 [UNIFI U6+](https://github.com/mrtwiste/freifunk/tree/main/unifi_u6_plus)
 
