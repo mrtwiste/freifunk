@@ -6,8 +6,6 @@ Dieses Repository enthält ein Hilfsskript (`fwupdate.sh`) und eine Schritt-für
 
 ## ⚠️ Wichtige Sicherheitshinweise
 
-> **Achtung – Experimenteller Status:**  
-> Die Firmware funktioniert, gilt jedoch noch als experimentell. 
 
 * **Kein reguläres Update:** Diese Firmware kann **nicht** einfach als Update auf einen bereits konfigurierten Freifunk-Router eingespielt werden! Das System wird dadurch unbrauchbar.
 * **Empfohlenes Vorgehen bei bestehender Installation:**
