@@ -70,7 +70,7 @@ Distribution: Die Funktionsweise von ssh-copy-id kann variieren.
 
 IP Adresse, Firmwarefile
 
-### Firmware [1.5.0j UST BETA Prerelase for Testing!](https://freifunk.hertel-wolfhagen.de/gluon-builds/v1.5.0j_UST_2/images/sysupgrade/)
+### Firmware [1.5.0](https://firmware.freifunk-nordhessen.de/images/1.5.0/sysupgrade/gluon-ff_nh-1.5.0-ubiquiti-unifi-6-plus-sysupgrade.bin)
 
 ## How To
 
