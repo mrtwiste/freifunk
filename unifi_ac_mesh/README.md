@@ -1,87 +1,87 @@
-# Installiert die Freifunksoftware auf einem UNIFI AC Mesh und Co
+# Freifunk-Installation auf Ubiquiti UniFi AC-Modellen (z. B. AC Mesh)
 
-## Sollte bei allen APs der AC Serie funtionieren, siehe <https://openwrt.org/toh/ubiquiti/unifiac>
+Dieses Repository enthält ein Hilfsskript (`fwupdate_ac_mesh.sh`) und eine Anleitung zur Installation der Freifunk-Software (Gluon) auf **Ubiquiti UniFi Access Points der AC-Serie** (z. B. UniFi AC Mesh, AC Lite, AC Pro).
 
-## Vorraussetzungen
+> **Kompatibilität:**  
+> Die Anleitung und das Skript sollten mit allen APs der UniFi AC-Serie funktionieren. Eine vollständige Übersicht kompatibler Geräte findest du in der [OpenWrt Table of Hardware](https://openwrt.org/toh/ubiquiti/unifiac).
 
-### Linux
+---
 
-Bash, SSH, SSH Key, ssh-copy-id
+## 📋 Voraussetzungen
 
-Wenn der SSH Key mit einer Passphrase abgesichert ist, empfiehlt sich der Einsatz des ssh-agents, außer man Tippt gerne...
-HowTo: <https://www.cyberciti.biz/faq/how-to-use-ssh-agent-for-authentication-on-linux-unix/>
+### Linux-Umgebung
+* Benötigte Werkzeuge: `bash`, `ssh`, `ssh-copy-id`
+* **Tipp:** Wenn dein SSH-Schlüssel mit einer Passphrase geschützt ist, empfiehlt sich die Nutzung von `ssh-agent`, um ständiges Tippen zu vermeiden ([HowTo: SSH Agent nutzen](https://www.cyberciti.biz/faq/how-to-use-ssh-agent-for-authentication-on-linux-unix/)).
 
-### ***Wichtig***
+### Windows-Nutzer
+* *Freiwillige gesucht:* Wer Lust hat, ein entsprechendes PowerShell-Skript beizusteuern, ist herzlich eingeladen, einen Pull Request zu öffnen!
 
-Um Probleme mit Bootloader oder SSH zu vermeiden, installiere immer zuerst die aktuellste UniFi Firmware.
+---
 
-Firmware Download:
-<https://www.ui.com/download/releases/firmware>
+## 1. Vorbereitung: Aktualisierung der UniFi-Firmware
 
-Update via Console:
+Um Probleme mit dem Bootloader oder SSH zu vermeiden, installiere vor dem Freifunk-Flashing immer zuerst die **aktuellste originale UniFi-Firmware**.
 
-Melde dich per SSH auf dem Router an:
+1. Lade die passende Firmware für dein AC-Modell von der [Ubiquiti Release-Seite](https://www.ui.com/download/releases/firmware) herunter.
+2. Verbinde dich per SSH mit dem Access Point:
+   ```bash
+   ssh ubnt@<IP-ADRESSE>
+   ```
+   *(Standard-Passwort: `ubnt`)*
+3. Führe das Update auf dem Access Point aus:
+   ```bash
+   upgrade https://meinefirmwareurl.bin
+   ```
+   *(Ersetze die URL durch den direkten Download-Link der aktuellen Firmware).*
 
-Benutzername: **ubnt**
+---
 
-Passwort: **ubnt** (Standard Passwort, falls nicht geändert)
+## 2. Sonderfall: `ssh-copy-id` auf OpenWrt / UniFi
 
-Führe folgenden Befehl aus, um das Update zu installieren:
+`ssh-copy-id` kopiert Schlüssel standardmäßig nach `~/.ssh/authorized_keys`. OpenWrt und UniFi-Systeme erwarten diese Datei jedoch unter `/etc/dropbear/authorized_keys`.
 
-`upgrade <https://meinefirmwareurl>`
+### Das Problem
+`ssh-copy-id` erkennt zwar OpenWrt, prüft jedoch (je nach Version) zusätzlich, ob der angemeldete Benutzer explizit "root" heißt. Auf UniFi-Geräten lautet der Standardbenutzer jedoch `ubnt` (obwohl er die UID 0 besitzt).
 
-Ersetze <https://meinefirmwareurl> mit der tatsächlichen URL der  Firmware.
+### Die Lösung
+Ergänze in deiner lokalen `/usr/bin/ssh-copy-id` die Bedingung zur UID-Prüfung in der entsprechenden Zeile:
 
-## ssh-copy-id auf OpenWrt/UniFi: Problem und Lösung
+```bash
+[ -f /etc/openwrt_release ] && ([ "$LOGNAME" = "root" ] || [ "$(id -u)" = "0" ]) &&
+```
 
-`ssh-copy-id` kopiert SSH-Schlüssel standardmäßig nach `~/.ssh/authorized_keys`.
-Auf OpenWrt/UniFi-Systemen werden diese jedoch in `/etc/dropbear/authorized_keys` benötigt.
+*Hinweis: In neueren Versionen von `ssh-copy-id` ist dieser Fix bereits integriert. Lege vor Modifikationen lokaler System-Skripte immer ein Backup an.*
 
-**Problem:**
+**Alternativen ohne Skript-Anpassung:**
+* Schlüssel manuell per SCP kopieren:
+  ```bash
+  scp ~/.ssh/id_rsa.pub ubnt@<IP-ADRESSE>:/etc/dropbear/authorized_keys
+  ```
 
-`ssh-copy-id` erkennt zwar OpenWrt, prüft aber (versionsabhängig) auch, ob der Benutzer "root" ist.
-Auf UniFi-Geräten ist der Standardbenutzer jedoch "ubnt" (mit UID 0), was zu Problemen führt.
+---
 
-**Lösung:**
+## 3. Freifunk-Software installieren (HowTo)
 
-`ssh-copy-id` muss zusätzlich zur Benutzernamenprüfung auch die UID prüfen.
-Ergänze dazu folgende Bedingung in der entsprechenden Zeile in `ssh-copy-id`:
+### Netzwerkeinstellungen & IP-Adresse
+* **Ohne DHCP:** Der AP nutzt werkseitig die IP-Adresse `192.168.1.20/24`. Konfiguriere die Netzwerkkarteneinstellungen deines Rechners entsprechend (z. B. auf `192.168.1.50`).
+* **Mit DHCP:** Hänge den AP alternativ in ein bestehendes Netzwerk mit DHCP-Server und wähle die dort zugewiesene IP-Adresse.
 
-`
-[ -f /etc/openwrt_release ] && ([ "\$LOGNAME" = "root" ] || [ "\$(id -u)" = "0" ]) &&`
+### Flashing-Prozess durchführen
 
-***Alternativen:***
+1. **Skript aufrufen:**  
+   Aufruf-Syntax: `./fwupdate_ac_mesh.sh <IP-ADRESSE> <FIRMWARE-IMAGE.bin>`
 
-Eigene Version von ssh-copy-id mit angepasster Prüfung erstellen und im Script auf diese verweisen.
+   ```bash
+   ./fwupdate_ac_mesh.sh 192.168.1.20 meinACmeshImage.bin
+   ```
 
-Schlüssel manuell kopieren: scp id_rsa.pub ubnt@<gerät>:/etc/dropbear/authorized_keys
+2. **Authentifizierung & Sicherheitsabfrage:**  
+   * Das Passwort für die SSH-Anfrage lautet im Werkszustand: `ubnt`
+   * **Wichtig:** Prüfe bei der Sicherheitsabfrage im Terminal aufmerksam, ob die Partitionen wie erwartet angezeigt werden (Schutzmaßnahme, falls Ubiquiti das Partitionslayout bei neueren Revisionen ändert).
 
-****Hinweise:****
+3. **Flashen & Geduld:**  
+   * Die Schreibvorgänge (`dd`) dauern auf der älteren Hardware-Generation der AC-Serie eine Weile – bitte Ruhe bewahren und den Vorgang nicht unterbrechen!
+   * Wenn alles erfolgreich war, bestätige die letzte Frage im Terminal mit **JA**.
 
-Backup: Vor Modifikation von ssh-copy-id ein Backup erstellen.
-
-Distribution: Die Funktionsweise von ssh-copy-id kann variieren.
-
-**Das Problem wird in einer der nächsten Versionen von ssh-copy-id gefixt sein!**
-
-### Parameter
-
-IP Adresse, Firmwarefile
-
-## How To
-
-Ohne DHCP hat der AP die IP Addresse 192.168.1.20/24, Netzwerk des Rechners demenstprechend konfigurieren.
-Alternativ den AP ins Netzwerk hängen und die dort zugewiesene IP nutzen.
-
-Aufruf mit `fwupdate_ac_mesh.sh IP IMAGE`  Bsp: `fwupdate_ac_mesh.sh 192.168.1.20 meintollesACmage.bin`
-
-Passwort für die Passwortanfrage: **ubnt**
-
-Bitte in der nächsten Abfrage prüfen ob die Partitionnen wie erwartet vorhanden sind.
-Dies ist zur Sicherheit da wir nicht wissen ob UNIFI hier nochmal was ändert!
-
-Die DDs dauern auf der alten Hardware eine Weile, also ruhig bleiben!
-
-Wenn alles erfolgreich war kann man die letzte Frage mit JA beantworten udn der AP startet die Freifunksoftware.
-
-Jetzt wie in der **DOKU** deiner Community beschrieben den AP konfigurieren.
+4. **Abschluss:**  
+   Der AP führt den Neustart durch und startet die Freifunk-Software. Konfiguriere den Knoten nun wie gewohnt über die Weboberfläche (Config-Mode) deiner lokalen Freifunk-Community.
