@@ -24,10 +24,6 @@ Dieses Repository bündelt Skripte für administrative Aufgaben rund um Freifunk
 
 ## 🚀 Erste Schritte
 
-### 1. Repository klonen
-```bash
-git clone [https://github.com/mrtwiste/freifunk.git](https://github.com/mrtwiste/freifunk.git)
-cd freifunk
 
 [UNIFI U6+](https://github.com/mrtwiste/freifunk/tree/main/unifi_u6_plus)
 
